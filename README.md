@@ -1,33 +1,78 @@
-> _Fork_ deze leertaak en ga aan de slag. 
-Onderstaande outline ga je gedurende deze taak in jouw eigen GitHub omgeving uitwerken. 
-De instructie vind je in: [docs/INSTRUCTIONS.md](https://github.com/fdnd-task/choices-choices-the-tech-stack/blob/main/docs/INSTRUCTIONS.md)
+# A minimal Astro site with Sanity Studio
 
-# Titel
-<!-- Geef je project een titel en schrijf in één zin wat het is -->
+This starter uses [Astro](https://astro.build/) for the front end and [Sanity](https://sanity.io/) to handle its content.
 
-## Inhoudsopgave
+## Featuring
 
-  * [Beschrijving](#beschrijving)
-  * [Kenmerken](#kenmerken)
-  * [Installatie](#installatie)
-  * [Gebruik](#gebruik)
-  * [Bronnen](#bronnen)
-  * [Licentie](#licentie)
+- How to fetch content as data from [the Sanity Content Lake](https://www.sanity.io/docs/datastore)
+- How to render block content with [Portable Text](https://www.sanity.io/docs/presenting-block-text)
+- A [Sanity Studio](https://www.sanity.io/docs/sanity-studio) to create and edit content
+- How to crop and render images with [Sanity Image URLs](https://www.sanity.io/docs/presenting-images)
 
-## Beschrijving
-<!-- In de Beschrijving staat hoe je project er uit ziet, hoe het werkt en wat je er mee kan. -->
-<!-- Voeg een mooie poster visual toe 📸 -->
-<!-- Voeg een link toe naar Github Pages 🌐-->
+## Prerequisites
 
-## Kenmerken
-<!-- Bij Kenmerken staat welke technieken zijn gebruikt en hoe. Wat is de HTML structuur? Wat zijn de belangrijkste dingen in CSS? Wat is er met Javascript gedaan en hoe? Misschien heb je een framwork of library gebruikt? -->
+- [Node.js](https://nodejs.org/en/) (v16.12 or later)
 
-## Installatie
+## Getting started
 
-## Gebruik
+Run the following commands
 
-## Bronnen
+1. `npm install` to install dependencies
+2. `npx sanity@latest init --env`, this will:
 
-## Licentie
+   - ask you to select or create a Sanity project and dataset
+   - output a `.env` file with appropriate variables
+   - _(or use `sanity init --env` if you have the CLI installed)_
 
-This project is licensed under the terms of the [MIT license](./LICENSE).
+3. Rename the variables in the .env file:
+
+   - ~~SANITY_STUDIO_PROJECT_ID~~ → PUBLIC_SANITY_STUDIO_PROJECT_ID
+   - ~~SANITY_STUDIO_DATASET~~ → PUBLIC_SANITY_STUDIO_DATASET
+
+4. `npm run dev` to start the development server
+
+Your Astro app should now be running on [http://localhost:4321/](http://localhost:4321/) and Studio on [http://localhost:4321/admin](http://localhost:4321/).
+
+### Add content
+
+1. Visit the Studio and create and publish a new `Post` document
+2. Visit the homepage and refresh the page to see your content rendered on the page
+
+The schema for the `Post` document is defined in the `/schema` folder. You can [add more document types](https://www.sanity.io/docs/schema-types) to the Studio to suit your needs.
+
+## Removing TypeScript
+
+If you do not wish to use TypeScript, we've included a `remove-typescript.mjs` file in the root of this repository. You can run this file with `node remove-typescript.mjs` to strip all types from this project. Please run this before tampering with any code to ensure that all types are properly removed.
+
+If you intend to use TypeScript, you can safely remove the `remove-typescript.mjs` file.
+
+## Removing the embedded Studio
+
+If you wish to manage and host the Studio separately, you remove the `studioBasePath` property for the `sanity` configuration in `astro.config.mjs`. You can also remove the following dependencies:
+
+- `output` in `astro.config.mjs`…
+  - …and `adapter` in `astro.config.mjs`
+- `react()` in `astro.config.mjs`
+- `@sanity/vision` `react` `react-dom` `@types/react` `@types/react-dom` from `package.json`
+- `schema` folder (you might want to copy this to the new Studio location)
+- `sanity.config.ts` (you might want to copy this to the new Studio location)
+
+## Deployments
+
+Feel free to deploy the App to whichever hosting provider you prefer ([Vercel](https://vercel.com/), [Netlify](https://netlify.com), [Cloudflare](https://pages.cloudflare.com/), etc). Remember [to change the adapter](https://docs.astro.build/en/guides/server-side-rendering/#adding-an-adapter) in the `astro.config.mjs` file to match your hosting provider.
+
+### Deploying the Studio on \*\.sanity.studio
+
+You can also deploy the Sanity Studio on its own URL by running `npx sanity deploy`, provided you have added a [`sanity.cli.ts` configuration file](https://www.sanity.io/docs/cli):
+
+```ts
+// sanity.cli.ts
+import { defineCliConfig } from "sanity/cli";
+
+export default defineCliConfig({
+  api: {
+    projectId: "<your-project-id>",
+    dataset: "<your-dataset-name>",
+  },
+});
+```
