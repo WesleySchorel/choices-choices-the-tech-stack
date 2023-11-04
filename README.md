@@ -1,78 +1,51 @@
-# A minimal Astro site with Sanity Studio
+# Vervoerregio Amsterdam | Sprint 15
 
-This starter uses [Astro](https://astro.build/) for the front end and [Sanity](https://sanity.io/) to handle its content.
+Live link: [toolgankelijk.netlify.app/]([https://toolgankelijk.netlify.app/](https://fastidious-frangollo-92ea62.netlify.app/))
 
-## Featuring
+## Inhoudsopgave
 
-- How to fetch content as data from [the Sanity Content Lake](https://www.sanity.io/docs/datastore)
-- How to render block content with [Portable Text](https://www.sanity.io/docs/presenting-block-text)
-- A [Sanity Studio](https://www.sanity.io/docs/sanity-studio) to create and edit content
-- How to crop and render images with [Sanity Image URLs](https://www.sanity.io/docs/presenting-images)
+  * [Beschrijving](#beschrijving)
+  * [Kenmerken](#kenmerken)
+  * [Installatie](#installatie)
+  * [Bronnen](#bronnen)
+  * [Licentie](#licentie)
 
-## Prerequisites
+## Beschrijving
 
-- [Node.js](https://nodejs.org/en/) (v16.12 or later)
+De Toolgankelijkheid website voor Vervoerregio Amsterdam waarmee medewerkers intern hun partners kunnen controleren op de toegankelijkheid van hun websites. 
 
-## Getting started
+![image](https://github.com/WesleySchorel/choices-choices-the-tech-stack/assets/112857487/e54741ca-3a22-4ee0-9b48-3e63f32626c8)
 
-Run the following commands
+### Epic
+De epic dit ik met de nieuwe techstack zal bouwen is: Partners pagina - overzichtspagina; een pagina waarop alle partners zichtbaar zijn.
 
-1. `npm install` to install dependencies
-2. `npx sanity@latest init --env`, this will:
+## Kenmerken
 
-   - ask you to select or create a Sanity project and dataset
-   - output a `.env` file with appropriate variables
-   - _(or use `sanity init --env` if you have the CLI installed)_
+Dit project is ontwikkeld door middel van Sveltekit. De inhoud wordt opgehaald door middel van een query uit Hygraph. De code wordt gehost op github en vervolgens door middel van Vercel live gezet. De code wordt gehost op GitHub. De live-versie van de website is beschikbaar op Netlify. Netlify is geïntegreerd met de GitHub Repository en genereert automatisch een nieuwe versie van de applicatie bij elke update op de main.
 
-3. Rename the variables in the .env file:
+Wij hebben de volgende technieken en technologiën gebruikt:
 
-   - ~~SANITY_STUDIO_PROJECT_ID~~ → PUBLIC_SANITY_STUDIO_PROJECT_ID
-   - ~~SANITY_STUDIO_DATASET~~ → PUBLIC_SANITY_STUDIO_DATASET
+* Svelte
+* Sveltekit
+* Hygraph
+* HTML
+* JS
+* CSS
+* Figma
 
-4. `npm run dev` to start the development server
-
-Your Astro app should now be running on [http://localhost:4321/](http://localhost:4321/) and Studio on [http://localhost:4321/admin](http://localhost:4321/).
-
-### Add content
-
-1. Visit the Studio and create and publish a new `Post` document
-2. Visit the homepage and refresh the page to see your content rendered on the page
-
-The schema for the `Post` document is defined in the `/schema` folder. You can [add more document types](https://www.sanity.io/docs/schema-types) to the Studio to suit your needs.
-
-## Removing TypeScript
-
-If you do not wish to use TypeScript, we've included a `remove-typescript.mjs` file in the root of this repository. You can run this file with `node remove-typescript.mjs` to strip all types from this project. Please run this before tampering with any code to ensure that all types are properly removed.
-
-If you intend to use TypeScript, you can safely remove the `remove-typescript.mjs` file.
-
-## Removing the embedded Studio
-
-If you wish to manage and host the Studio separately, you remove the `studioBasePath` property for the `sanity` configuration in `astro.config.mjs`. You can also remove the following dependencies:
-
-- `output` in `astro.config.mjs`…
-  - …and `adapter` in `astro.config.mjs`
-- `react()` in `astro.config.mjs`
-- `@sanity/vision` `react` `react-dom` `@types/react` `@types/react-dom` from `package.json`
-- `schema` folder (you might want to copy this to the new Studio location)
-- `sanity.config.ts` (you might want to copy this to the new Studio location)
-
-## Deployments
-
-Feel free to deploy the App to whichever hosting provider you prefer ([Vercel](https://vercel.com/), [Netlify](https://netlify.com), [Cloudflare](https://pages.cloudflare.com/), etc). Remember [to change the adapter](https://docs.astro.build/en/guides/server-side-rendering/#adding-an-adapter) in the `astro.config.mjs` file to match your hosting provider.
-
-### Deploying the Studio on \*\.sanity.studio
-
-You can also deploy the Sanity Studio on its own URL by running `npx sanity deploy`, provided you have added a [`sanity.cli.ts` configuration file](https://www.sanity.io/docs/cli):
-
-```ts
-// sanity.cli.ts
-import { defineCliConfig } from "sanity/cli";
-
-export default defineCliConfig({
-  api: {
-    projectId: "<your-project-id>",
-    dataset: "<your-dataset-name>",
-  },
-});
+## Installatie
 ```
+1. Clone de repository
+2. Open de repo via github desktop
+3. Installeer npm packages d.m.v. npm install
+4. Run de localhost d.m.v. npm run dev
+```
+
+## Bronnen
+
+[FDND agency](https://github.com/fdnd-agency/vervoerregio-amsterdam) <br>
+[Hygraph mutation](https://hygraph.com/docs/api-reference/content-api/mutations) <br>
+
+## Licentie
+
+This project is licensed under the terms of the [MIT license](./LICENSE).
