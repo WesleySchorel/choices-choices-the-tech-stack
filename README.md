@@ -1,6 +1,6 @@
 # Vervoerregio Amsterdam | Sprint 15
 
-Live link: [toolgankelijk.netlify.app/]([https://toolgankelijk.netlify.app/](https://fastidious-frangollo-92ea62.netlify.app/))
+Live link: https://fastidious-frangollo-92ea62.netlify.app/
 
 ## Inhoudsopgave
 
